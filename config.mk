@@ -2,9 +2,9 @@ PREFIX=/usr/local
 
 CC=musl-gcc
 
-CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2
-LDFLAGS=-s -static -lm
+CFLAGS=-Wall -Wextra -std=c99 -pedantic -g
+LDFLAGS=-static -lm
 
-TARGET=craedler sraedler
+TARGET=raedler
 
-LIB=deps/libzahl/libzahl.a deps/liblist/liblist.a
+LIB=deps/libzahl/libzahl.a

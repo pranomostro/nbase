@@ -1,6 +1,10 @@
 #binaries
 *.o
 *.a
-craedler
-sraedler
+raedler
 
+#results
+res.txt
+
+#temporary files
+errs
