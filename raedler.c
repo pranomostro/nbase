@@ -7,6 +7,8 @@
 
 const int CAP=65536;
 
+z_t op1, op2;
+
 typedef struct raedler
 {
 	unsigned short pos;
@@ -21,10 +23,6 @@ static void usage(char* progname)
 
 void pbw(z_t res, short i, short j)
 {
-	z_t op1, op2;
-	zinit(op1);
-	zinit(op2);
-
 	zseti(op1, i);
 	zseti(op2, j);
 
@@ -33,9 +31,6 @@ void pbw(z_t res, short i, short j)
 	zseti(op2, j);
 	zpow(op1, op2, op1);
 	zadd(res, op1, res);
-
-	zfree(op1);
-	zfree(op2);
 }
 
 int main(int argc, char** argv)
@@ -53,6 +48,9 @@ int main(int argc, char** argv)
 	res[2].pos=2;
 	zinit(res[2].val);
 	zseti(res[2].val, 8);
+
+	zinit(op1);
+	zinit(op2);
 
 	ARGBEGIN
 	{
@@ -105,6 +103,8 @@ int main(int argc, char** argv)
 
 	for(i=0; i<=high; i++)
 		zfree(res[i].val);
+	zfree(op1);
+	zfree(op2);
 
 	zunsetup();
 
