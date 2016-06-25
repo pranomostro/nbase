@@ -15,10 +15,11 @@ static void usage(char* progname)
 int main(int argc, char** argv)
 {
 	char* argv0, * resstr;
-	int nflag, ressize;
-	unsigned long long i, j;
+	size_t ressize;
+	unsigned long long i, j, nflag, count;
 	z_t res, op1, op2;
 
+	nflag=0;
 	ressize=65536;
 	resstr=calloc(ressize, sizeof(char));
 
@@ -46,7 +47,7 @@ int main(int argc, char** argv)
 	zinit(op1);
 	zinit(op2);
 
-	for(i=2;; i++)
+	for(i=2, count=1;; i++)
 		for(j=2; j<=i; j++)
 		{
 			zseti(op1, i);
@@ -65,7 +66,10 @@ int main(int argc, char** argv)
 
 			resstr=zstr(res, resstr, ressize);
 			printf("%s %llu %llu\n", resstr, i, j);
+			if(nflag>0&&count++>=nflag)
+				goto end;
 		}
+	end:
 
 	zfree(res);
 	zfree(op1);
