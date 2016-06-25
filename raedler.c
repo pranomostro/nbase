@@ -17,7 +17,7 @@ typedef struct raedler
 
 static void usage(char* progname)
 {
-	fprintf(stderr, "%s [-N LIM]\n", progname);
+	fprintf(stderr, "%s [-n LIM]\n", progname);
 	exit(1);
 }
 
