@@ -39,11 +39,14 @@ int main(int argc, char** argv)
 	size_t ressize;
 	unsigned long long count, nflag;
 	unsigned short i, low, high, smallest;
+	jmp_buf env;
 	raedler res[CAP];
 
 	nflag=0;
 	ressize=CAP;
-	resstr=calloc(ressize, sizeof(char));
+	resstr=(char*)calloc(ressize, sizeof(char));
+
+	zsetup(env);
 
 	res[2].pos=2;
 	zinit(res[2].val);
@@ -61,16 +64,12 @@ int main(int argc, char** argv)
 		usage(argv0);
 	} ARGEND;
 
-	jmp_buf env;
-
 	if(setjmp(env))
 	{
 		perror(0);
 		zunsetup();
 		return 1;
 	}
-
-	zsetup(env);
 
 	for(low=high=2, count=1; high<CAP; count++)
 	{
