@@ -46,6 +46,13 @@ int main(int argc, char** argv)
 	ressize=CAP;
 	resstr=(char*)calloc(ressize, sizeof(char));
 
+	if(setjmp(env))
+	{
+		perror(0);
+		zunsetup();
+		return 1;
+	}
+
 	zsetup(env);
 
 	res[2].pos=2;
@@ -63,13 +70,6 @@ int main(int argc, char** argv)
 	default:
 		usage(argv0);
 	} ARGEND;
-
-	if(setjmp(env))
-	{
-		perror(0);
-		zunsetup();
-		return 1;
-	}
 
 	for(low=high=2, count=1; high<CAP; count++)
 	{
@@ -102,6 +102,7 @@ int main(int argc, char** argv)
 
 	for(i=0; i<=high; i++)
 		zfree(res[i].val);
+
 	zfree(op1);
 	zfree(op2);
 
