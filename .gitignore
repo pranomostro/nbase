@@ -8,3 +8,6 @@ res.txt
 
 #temporary files
 errs
+
+#profiling information
+gmon.out

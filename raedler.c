@@ -76,17 +76,11 @@ int main(int argc, char** argv)
 		for(i=smallest=low; i<=high; i++)
 			if(zcmp(res[i].val, res[smallest].val)<0)
 				smallest=i;
-		if(zstr_length(res[smallest].val, 10)>ressize)
-		{
-			ressize*=2;
-			resstr=realloc(resstr, ressize);
-		}
 		resstr=zstr(res[smallest].val, resstr, ressize);
 		printf("%s %d %d\n", resstr, smallest, res[smallest].pos);
 
 		res[smallest].pos++;
-		if(res[low].pos>low)
-			low++;
+
 		if(smallest==high)
 		{
 			high++;
@@ -95,12 +89,17 @@ int main(int argc, char** argv)
 			pbw(res[high].val, res[high].pos, high);
 		}
 		pbw(res[smallest].val, res[smallest].pos, smallest);
+		if(res[low].pos>low)
+		{
+			zfree(res[low].val);
+			low++;
+		}
 
 		if(nflag!=0&&count>=nflag)
 			break;
 	}
 
-	for(i=0; i<=high; i++)
+	for(i=low; i<=high; i++)
 		zfree(res[i].val);
 
 	zfree(op1);
