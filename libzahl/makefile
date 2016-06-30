@@ -90,6 +90,6 @@ libzahl.a: $(OBJ)
 	$(AR) rc $@ $?
 	$(RANLIB) $@
 clean:
-	-rm -- *.o *.su *.a *.so 2>/dev/null
+	-rm -- *.o *.a
 
 .PHONY: all check clean install uninstall

@@ -9,6 +9,6 @@ libnal.a: $(OBJ)
 	$(AR) rc $@ $?
 	$(RANLIB) $@
 clean:
-	rm -- *.o *.a
+	-rm -- *.o *.a
 
 .PHONY: all clean
