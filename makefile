@@ -1,8 +1,9 @@
 include config.mk
 
 all: $(TARGET)
-deps/libzahl/libzahl.a:
-	make -C deps/libzahl/
+
+libzahl/libzahl.a: $(ZAHLSRC)
+	make -C libzahl/
 
 raedler: raedler.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
@@ -11,7 +12,7 @@ raedler: raedler.o $(LIB)
 	$(CC) $(CFLAGS) -c $<
 
 clean:
-	make -C deps/libzahl/ clean
+	make -C libzahl/ clean
 	rm -rf *.o $(TARGET)
 
 install: $(TARGET)
