@@ -1,9 +1,9 @@
 PREFIX=/usr/local
 
-CC=musl-gcc
+CC=cc
 
-CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2 -Os
-LDFLAGS=-s -static -lm
+CFLAGS=-Wall -Wextra -std=c99 -pedantic -s -O2 -Os
+LDFLAGS=-static -lm
 
 TARGET=raedler
 

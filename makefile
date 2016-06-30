@@ -25,3 +25,5 @@ install: $(TARGET)
 
 uninstall:
 	cd $(PREFIX)/bin && rm -f $(TARGET)
+
+.PHONY: all clean install uninstall

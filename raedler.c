@@ -3,9 +3,10 @@
 #include <setjmp.h>
 
 #include "arg.h"
+#include "libnal/nal.h"
 #include "libzahl/zahl.h"
 
-const int CAP=65536;
+const int CAP=4;
 
 z_t op1, op2;
 
@@ -36,15 +37,17 @@ void pbw(z_t res, short i, short j)
 int main(int argc, char** argv)
 {
 	char* argv0, * resstr;
-	size_t ressize;
+	size_t ressize, resstrsize;
 	unsigned long long count, nflag;
 	unsigned short i, low, high, smallest;
 	jmp_buf env;
-	raedler res[CAP];
+	raedler* res;
 
 	nflag=0;
-	ressize=CAP;
-	resstr=(char*)calloc(ressize, sizeof(char));
+	ressize=resstrsize=CAP;
+
+	res=calloc(ressize, sizeof(raedler));
+	resstr=calloc(resstrsize, sizeof(char));
 
 	if(setjmp(env))
 	{
@@ -94,7 +97,11 @@ int main(int argc, char** argv)
 			zfree(res[low].val);
 			low++;
 		}
-
+		if(high>=ressize-1)
+		{
+			res=resize(res, ressize, 2*ressize);
+			ressize*=2;
+		}
 		if(nflag!=0&&count>=nflag)
 			break;
 	}
@@ -107,6 +114,7 @@ int main(int argc, char** argv)
 
 	zunsetup();
 
+	free(res);
 	free(resstr);
 
 	return 0;
