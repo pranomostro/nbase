@@ -4,6 +4,8 @@ all: $(TARGET)
 
 libzahl/libzahl.a: $(ZAHLSRC)
 	make -C libzahl/
+libnal/libnal.a: $(NALSRC)
+	make -C libnal
 
 raedler: raedler.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
@@ -13,6 +15,7 @@ raedler: raedler.o $(LIB)
 
 clean:
 	make -C libzahl/ clean
+	make -C libnal/ clean
 	rm -rf *.o $(TARGET)
 
 install: $(TARGET)
