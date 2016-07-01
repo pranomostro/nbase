@@ -2,8 +2,8 @@ PREFIX=/usr/local
 
 CC=cc
 
-CFLAGS=-Wall -Wextra -std=c99 -pedantic -s -O2 -Os
-LDFLAGS=-static -lm
+CFLAGS=-Wall -Wextra -std=c99 -pedantic -g
+LDFLAGS=-static
 
 TARGET=raedler
 

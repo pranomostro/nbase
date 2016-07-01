@@ -37,9 +37,8 @@ void pbw(z_t res, short i, short j)
 int main(int argc, char** argv)
 {
 	char* argv0, * resstr;
-	size_t ressize, resstrsize;
+	size_t i, ressize, resstrsize, low, high, smallest;
 	unsigned long long count, nflag;
-	unsigned short i, low, high, smallest;
 	jmp_buf env;
 	raedler* res;
 
@@ -74,13 +73,19 @@ int main(int argc, char** argv)
 		usage(argv0);
 	} ARGEND;
 
-	for(low=high=2, count=1; high<CAP; count++)
+	for(low=high=2, count=1; nflag==0||count<=nflag; count++)
 	{
 		for(i=smallest=low; i<=high; i++)
 			if(zcmp(res[i].val, res[smallest].val)<0)
 				smallest=i;
+
+		if(zstr_length(res[smallest].val, 10)>=resstrsize-1)
+		{
+			resstr=resize(resstr, resstrsize*sizeof(char), 2*resstrsize*sizeof(char));
+			resstrsize*=2;
+		}
 		resstr=zstr(res[smallest].val, resstr, ressize);
-		printf("%s %d %d\n", resstr, smallest, res[smallest].pos);
+		printf("%s %ld %ld\n", resstr, smallest, res[smallest].pos);
 
 		res[smallest].pos++;
 
@@ -91,19 +96,17 @@ int main(int argc, char** argv)
 			zinit(res[high].val);
 			pbw(res[high].val, res[high].pos, high);
 		}
+
 		pbw(res[smallest].val, res[smallest].pos, smallest);
+
 		if(res[low].pos>low)
-		{
-			zfree(res[low].val);
 			low++;
-		}
+
 		if(high>=ressize-1)
 		{
-			res=resize(res, ressize, 2*ressize);
+			res=resize(res, ressize*sizeof(raedler), 2*ressize*sizeof(raedler));
 			ressize*=2;
 		}
-		if(nflag!=0&&count>=nflag)
-			break;
 	}
 
 	for(i=low; i<=high; i++)

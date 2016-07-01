@@ -7,6 +7,8 @@ raedler
 res.txt
 
 #temporary files
+core.*
+vgcore.*
 errs
 
 #profiling information
