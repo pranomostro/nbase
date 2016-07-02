@@ -8,11 +8,9 @@
 
 const int CAP=4;
 
-z_t op1, op2;
-
 typedef struct raedler
 {
-	unsigned short pos;
+	size_t pos;
 	z_t val;
 } raedler;
 
@@ -22,8 +20,13 @@ static void usage(char* progname)
 	exit(1);
 }
 
-void pbw(z_t res, short i, short j)
+void pbw(z_t res, size_t i, size_t j)
 {
+	z_t op1, op2;
+
+	zinit(op1);
+	zinit(op2)
+
 	zseti(op1, i);
 	zseti(op2, j);
 
@@ -32,6 +35,9 @@ void pbw(z_t res, short i, short j)
 	zseti(op2, j);
 	zpow(op1, op2, op1);
 	zadd(res, op1, res);
+
+	zfree(op1);
+	zfree(op2);
 }
 
 int main(int argc, char** argv)
@@ -61,8 +67,6 @@ int main(int argc, char** argv)
 	zinit(res[2].val);
 	zseti(res[2].val, 8);
 
-	zinit(op1);
-	zinit(op2);
 
 	ARGBEGIN
 	{
@@ -85,22 +89,31 @@ int main(int argc, char** argv)
 			resstrsize*=2;
 		}
 		resstr=zstr(res[smallest].val, resstr, ressize);
-		printf("%s %ld %ld\n", resstr, smallest, res[smallest].pos);
+		printf("%s %li %li\n", resstr, smallest, res[smallest].pos);
 
 		res[smallest].pos++;
-
-		if(smallest==high)
+		if(smallest>=high&&res[high].pos!=2)
 		{
 			high++;
 			res[high].pos=2;
 			zinit(res[high].val);
-			pbw(res[high].val, res[high].pos, high);
+			fprintf(stderr, "initialized res[%li].\n", high);
+			fprintf(stderr, "high: computing with %li, %li.\n", high, res[high].pos);
+			pbw(res[high].val, high, res[high].pos);
 		}
 
-		pbw(res[smallest].val, res[smallest].pos, smallest);
+		if(res[smallest].pos<smallest)
+		{
+			res[smallest].pos++;
+			fprintf(stderr, "nonhigh: computing with %li, %li.\n", smallest, res[smallest].pos);
+			pbw(res[smallest].val, smallest, res[smallest].pos);
+		}
 
 		if(res[low].pos>low)
+		{
+			zfree(res[low].val);
 			low++;
+		}
 
 		if(high>=ressize-1)
 		{
@@ -111,9 +124,6 @@ int main(int argc, char** argv)
 
 	for(i=low; i<=high; i++)
 		zfree(res[i].val);
-
-	zfree(op1);
-	zfree(op2);
 
 	zunsetup();
 
