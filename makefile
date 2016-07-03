@@ -7,7 +7,10 @@ libzahl/libzahl.a: $(ZAHLSRC)
 libnal/libnal.a: $(NALSRC)
 	make -C libnal
 
-raedler: raedler.o $(LIB)
+leyland: leyland.o $(LIB)
+	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
+
+zerbin: zerbin.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 %.o: %.c

@@ -2,10 +2,10 @@ PREFIX=/usr/local
 
 CC=cc
 
-CFLAGS=-Wall -Wextra -std=c99 -pedantic -g
-LDFLAGS=-static
+CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2
+LDFLAGS=-s -static
 
-TARGET=raedler
+TARGET=leyland zerbin
 
 LIB=libzahl/libzahl.a libnal/libnal.a
 

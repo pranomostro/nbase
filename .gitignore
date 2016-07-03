@@ -1,10 +1,12 @@
 #binaries
 *.o
 *.a
-raedler
+leyland
+zerbin
 
 #results
-res.txt
+*.txt
+*.zip
 
 #temporary files
 core.*
