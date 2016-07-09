@@ -5,7 +5,7 @@ CC=cc
 CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2
 LDFLAGS=-s -static
 
-TARGET=leyland zerbin
+TARGET=leyland
 
 LIB=libzahl/libzahl.a libnal/libnal.a
 

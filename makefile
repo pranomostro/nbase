@@ -10,9 +10,6 @@ libnal/libnal.a: $(NALSRC)
 leyland: leyland.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
-zerbin: zerbin.o $(LIB)
-	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
-
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
 
