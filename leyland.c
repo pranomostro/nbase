@@ -16,7 +16,7 @@ typedef struct raedler
 
 static void usage(char* progname)
 {
-	fprintf(stderr, "%s [-n LIM]\n", progname);
+	fprintf(stderr, "%s [-l LIM]\n", progname);
 	exit(1);
 }
 
@@ -67,7 +67,7 @@ int main(int argc, char** argv)
 
 	ARGBEGIN
 	{
-	case 'n':
+	case 'l':
 		nflag=atoi(EARGF(usage(argv0)));
 		break;
 	default:
