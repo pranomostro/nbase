@@ -2,7 +2,7 @@
 *.o
 *.a
 leyland
-zerbin
+collatz
 
 #results
 *.txt

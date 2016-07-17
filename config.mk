@@ -2,10 +2,10 @@ PREFIX=/usr/local
 
 CC=musl-gcc
 
-CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2
+CFLAGS=-Wall -std=c99 -pedantic -O2
 LDFLAGS=-s -static
 
-TARGET=leyland
+TARGET=leyland collatz
 
 LIB=libzahl/libzahl.a libutil/libutil.a
 

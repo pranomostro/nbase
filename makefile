@@ -1,13 +1,15 @@
 include config.mk
 
-all: $(TARGET)
+all: $(LIB) $(TARGET)
 
 libzahl/libzahl.a: $(ZAHLSRC)
 	make -C libzahl/
-libutil/libutil.a: $(NALSRC)
-	make -C libutil
+libutil/libutil.a: $(UTILSRC)
+	make -C libutil/
 
 leyland: leyland.o $(LIB)
+	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
+collatz: collatz.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 %.o: %.c
