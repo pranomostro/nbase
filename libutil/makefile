@@ -1,11 +1,11 @@
 include config.mk
 
-all: libnal.a
+all: libutil.a
 
 %.o: %.c $(HDR) $(CONFIG)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-libnal.a: $(OBJ)
+libutil.a: $(OBJ)
 	$(AR) rc $@ $?
 	$(RANLIB) $@
 clean:

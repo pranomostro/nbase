@@ -1,9 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <limits.h>
 
-#include "libnal/nal.h"
+#include "util.h"
 
 void cliterate(int argc, char** argv, FILE* input, void (*itf)(char*, size_t))
 {
@@ -15,7 +14,7 @@ void cliterate(int argc, char** argv, FILE* input, void (*itf)(char*, size_t))
 			itf(argv[argc], strlen(argv[argc]));
 	else
 	{
-		line=calloc((linelen=LINE_MAX), sizeof(char));
+		line=calloc((linelen=BUFSIZ), sizeof(char));
 		while((line=nalread(line, &linelen, input))!=NULL)
 			itf(line, linelen);
 	}

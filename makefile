@@ -4,8 +4,8 @@ all: $(TARGET)
 
 libzahl/libzahl.a: $(ZAHLSRC)
 	make -C libzahl/
-libnal/libnal.a: $(NALSRC)
-	make -C libnal
+libutil/libutil.a: $(NALSRC)
+	make -C libutil
 
 leyland: leyland.o $(LIB)
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
@@ -15,7 +15,7 @@ leyland: leyland.o $(LIB)
 
 clean:
 	make -C libzahl/ clean
-	make -C libnal/ clean
+	make -C libutil/ clean
 	rm -rf *.o $(TARGET)
 
 install: $(TARGET)

@@ -2,7 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "nal.h"
+#include "util.h"
+
+const int RESIZEFACTOR=2;
 
 char* nalread(char* in, size_t* len, FILE* input)
 {
