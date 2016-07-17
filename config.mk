@@ -1,6 +1,6 @@
 PREFIX=/usr/local
 
-CC=cc
+CC=musl-gcc
 
 CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2
 LDFLAGS=-s -static
