@@ -4,14 +4,14 @@
 
 #include "util.h"
 
-void cliterate(int argc, char** argv, FILE* input, void (*itf)(char*, size_t))
+void cliterate(size_t argc, char** argv, FILE* input, void (*itf)(char*, size_t))
 {
 	char* line;
-	size_t linelen;
+	size_t linelen, i;
 
 	if(argc>1)
-		while(argc-->0)
-			itf(argv[argc], strlen(argv[argc]));
+		for(i=1; i<argc; i++)
+			itf(argv[i], strlen(argv[i]));
 	else
 	{
 		line=calloc((linelen=BUFSIZ), sizeof(char));
