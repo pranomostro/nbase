@@ -34,6 +34,7 @@ Present:
 
 Planned:
 
+* leyland does not have to save the z_t's, they are completely unneeded. Also: use queue.h
 * primes
 * isprime
 * hamming
