@@ -48,7 +48,7 @@ LIBUTILSRC =\
 	libutil/clit.c\
 	libutil/nal.c
 
-LIB = $(LIBUTIL) $(LIBZAHL)
+LIB = $(LIBZAHL) $(LIBUTIL)
 
 BIN =\
 	collatz\

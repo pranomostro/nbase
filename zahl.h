@@ -30,7 +30,7 @@
 
 
 
-#include "libzahl/internals.h"
+#include "libzahl/zahlinternals.h"
 
 
 
