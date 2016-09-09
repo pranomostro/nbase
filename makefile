@@ -6,6 +6,7 @@ include config.mk
 HDR =\
 	arg.h\
 	zahl.h\
+	queue.h\
 	util.h
 
 LIBZAHL = libzahl.a
