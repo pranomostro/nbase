@@ -1,31 +1,99 @@
 include config.mk
 
-all: $(LIB) $(TARGET)
+.SUFFIXES:
+.SUFFIXES: .o .c
 
-libzahl/libzahl.a: $(ZAHLSRC)
-	make -C libzahl/
-libutil/libutil.a: $(UTILSRC)
-	make -C libutil/
+HDR =\
+	arg.h\
+	zahl.h\
+	util.h
 
-leyland: leyland.o $(LIB)
+LIBZAHL = libzahl.a
+LIBZAHLSRC =\
+	libzahl/zadd.c\
+	libzahl/zand.c\
+	libzahl/zbset.c\
+	libzahl/zdivmod.c\
+	libzahl/zerror.c\
+	libzahl/zfree.c\
+	libzahl/zgcd.c\
+	libzahl/zload.c\
+	libzahl/zlsh.c\
+	libzahl/zmodmul.c\
+	libzahl/zmodpow.c\
+	libzahl/zmodpowu.c\
+	libzahl/zmodsqr.c\
+	libzahl/zmul.c\
+	libzahl/znot.c\
+	libzahl/zor.c\
+	libzahl/zperror.c\
+	libzahl/zpow.c\
+	libzahl/zpowu.c\
+	libzahl/zptest.c\
+	libzahl/zrand.c\
+	libzahl/zrsh.c\
+	libzahl/zsets.c\
+	libzahl/zsetup.c\
+	libzahl/zsqr.c\
+	libzahl/zstr.c\
+	libzahl/zstr_length.c\
+	libzahl/zsub.c\
+	libzahl/ztrunc.c\
+	libzahl/zunsetup.c\
+	libzahl/zxor.c\
+	libzahl/allocator.c
+
+LIBUTIL = libutil.a
+LIBUTILSRC =\
+	libutil/clit.c\
+	libutil/nal.c
+
+LIB = $(LIBUTIL) $(LIBZAHL)
+
+BIN =\
+	collatz\
+	leyland
+
+LIBZAHLOBJ = $(LIBZAHLSRC:.c=.o)
+LIBUTILOBJ = $(LIBUTILSRC:.c=.o)
+OBJ = $(BIN:=.o) $(LIBZAHLOBJ) $(LIBUTILOBJ)
+SRC = $(BIN:=.c)
+MAN= $(BIN:=.1)
+
+all: $(BIN)
+
+$(BIN): $(LIB) $(@:=.o)
+
+$(OBJ): $(HDR) config.mk
+
+.o:
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
-collatz: collatz.o $(LIB)
-	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
+.c.o:
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
 
-clean:
-	make -C libzahl/ clean
-	make -C libutil/ clean
-	rm -rf *.o $(TARGET)
+$(LIBZAHL): $(LIBZAHLOBJ)
+	$(AR) rc $@ $?
+	$(RANLIB) $@
 
-install: $(TARGET)
+$(LIBUTIL): $(LIBUTILOBJ)
+	$(AR) rc $@ $?
+	$(RANLIB) $@
+
+install: all
 	mkdir -p $(PREFIX)/bin
-	cp $(TARGET) $(PREFIX)/bin
-	cd $(PREFIX)/bin/ && chmod 755 $(TARGET)
+	cp -f $(BIN) $(PREFIX)/bin
+	cd $(PREFIX)/bin && chmod 755 $(BIN)
+	mkdir -p $(PREFIX)/man/man1
+	cp -f $(MAN) $(PREFIX)/man/man1
+	cd $(PREFIX)/man/man1 && chmod 644 $(MAN)
 
 uninstall:
-	cd $(PREFIX)/bin && rm -f $(TARGET)
+	cd $(PREFIX)/bin && rm -f $(BIN)
+	cd $(PREFIX)/man/man1 && rm -f $(MAN)
 
-.PHONY: all clean install uninstall
+clean:
+	rm -f $(BIN) $(OBJ) $(LIB)
+
+.PHONY:
+	all install uninstall clean

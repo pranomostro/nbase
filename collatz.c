@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <setjmp.h>
 
-#include "libzahl/zahl.h"
-#include "libutil/util.h"
+#include "zahl.h"
+#include "util.h"
 
 z_t op1, op2;
 

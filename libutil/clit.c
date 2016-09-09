@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "util.h"
+#include "../util.h"
 
 void cliterate(size_t argc, char** argv, FILE* input, void (*itf)(char*, size_t))
 {

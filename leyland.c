@@ -3,8 +3,8 @@
 #include <setjmp.h>
 
 #include "arg.h"
-#include "libutil/util.h"
-#include "libzahl/zahl.h"
+#include "util.h"
+#include "zahl.h"
 
 const int CAP=65536;
 

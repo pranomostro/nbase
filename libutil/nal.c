@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "util.h"
+#include "../util.h"
 
 const int RESIZEFACTOR=2;
 

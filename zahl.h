@@ -30,7 +30,7 @@
 
 
 
-#include "zahl/internals.h"
+#include "libzahl/internals.h"
 
 
 
@@ -196,7 +196,7 @@ void zsqr_ll(z_t, z_t);                 /* zsqr for non-negative operand */
 
 
 
-#include "zahl/inlines.h"
+#include "libzahl/inlines.h"
 
 
 #endif
