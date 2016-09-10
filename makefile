@@ -71,7 +71,7 @@ $(OBJ): $(HDR) config.mk
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 .c.o:
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(LIBZAHL): $(LIBZAHLOBJ)
 	$(AR) rc $@ $?
