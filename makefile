@@ -5,12 +5,13 @@ include config.mk
 
 HDR =\
 	arg.h\
-	zahl.h\
 	queue.h\
-	util.h
+	util.h\
+	zahl.h
 
 LIBZAHL = libzahl.a
 LIBZAHLSRC =\
+	libzahl/allocator.c\
 	libzahl/zadd.c\
 	libzahl/zand.c\
 	libzahl/zbset.c\
@@ -41,8 +42,7 @@ LIBZAHLSRC =\
 	libzahl/zsub.c\
 	libzahl/ztrunc.c\
 	libzahl/zunsetup.c\
-	libzahl/zxor.c\
-	libzahl/allocator.c
+	libzahl/zxor.c
 
 LIBUTIL = libutil.a
 LIBUTILSRC =\
@@ -71,7 +71,7 @@ $(OBJ): $(HDR) config.mk
 	$(CC) $(LDFLAGS) -o $@ $< $(LIB)
 
 .c.o:
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(LIBZAHL): $(LIBZAHLOBJ)
 	$(AR) rc $@ $?

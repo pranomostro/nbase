@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 	{
 		perror(0);
 		zunsetup();
-		return 1;
+		exit(1);
 	}
 
 	zsetup(env);

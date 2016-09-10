@@ -17,7 +17,7 @@ typedef struct raedler
 static void usage(char* progname)
 {
 	fprintf(stderr, "%s [-l LIM]\n", progname);
-	exit(1);
+	exit(2);
 }
 
 void pbw(z_t res, size_t i, size_t j)
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 	{
 		perror(0);
 		zunsetup();
-		return 1;
+		exit(1);
 	}
 
 	zsetup(env);

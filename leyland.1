@@ -1,0 +1,21 @@
+.TH LEYLAND 1
+.SH NAME
+leyland \- print the leyland numbers
+
+.SH SYNOPSIS
+leyland [-l LIM]
+
+.SH DESCRIPTION
+leyland prints the leyland numbers (every number representable by a^b+b^a), in ascending order.
+If given no limit, it starts printing all leyland numbers (will run infinitely).
+
+.SH OPTIONS
+.TP
+.BI "-l LIM"
+print the first LIM leyland numbers.
+
+.SH STATUS
+0 on success, 1 when it prints the usage and 2 in the case of a libzahl error.
+
+.SH AUTHOR
+pranomostro (pranomestro@gmail.com).
