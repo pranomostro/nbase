@@ -17,9 +17,15 @@ void collatz(char* str, size_t len)
 		*nl='\0';
 
 	if(zsets(op1, str)<0)
+	{
 		fprintf(stderr, "collatz: could not parse input line %s as number.\n", str);
+		return;
+	}
 	if(zcmpi(op1, 1)==-1)
-		fprintf(stderr, "collatz: negative numbers are not allowed at the moment.\n");
+	{
+		fprintf(stderr, "collatz: the sequence only works with integers bigger than 0.\n");
+		return;
+	}
 
 	while(zcmpi(op1, 1))
 	{
