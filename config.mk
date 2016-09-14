@@ -5,5 +5,5 @@ CC=cc
 AR=ar
 RANLIB=ranlib
 
-CFLAGS=-std=c99 -Wall -O2
-LDFLAGS=-s -static
+CFLAGS=-std=c99 -Wall -g
+LDFLAGS=-static

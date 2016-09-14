@@ -5,7 +5,7 @@ nbase contains some programs meant to
 accompany sbase and ubase with some
 utilities meant to deal with numbers.
 This include factoring, checking primality,
-leyland numbers and collatz sequences and
+leyland numbers, collatz sequences and
 probably a bit more.
 
 These utilities are built with libzahl,
@@ -34,12 +34,13 @@ Present:
 
 Planned:
 
-* leyland does not have to save the z_t's, they are completely unneeded. Also: use queue.h
-* primes
-* isprime
-* hamming
-* goldbach
+* fac
+* fib
 * factor
+* primes
+* hamming
+* isprime
+* goldbach
 
 Requirements
 ------------
