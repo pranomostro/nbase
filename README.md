@@ -36,11 +36,11 @@ Planned:
 
 * fac
 * fib
-* factor
-* primes
-* hamming
-* isprime
-* goldbach
+* factor [NUMS]: like factor(1), already existing
+* primes [N[-M]]: print all primes up to N or from N to M
+* hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
+* isprime [NUMS]: print "prime" and "nonprime" if a number from the arguments/input (like factor(1))
+* goldbach [-a] [NUMS]: accept an even number, prints a or all (if called  with -a) primes that add up to the given number. Pairs are separated by " ", lists of pairs are separated by ":"
 
 Requirements
 ------------
