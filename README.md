@@ -34,8 +34,8 @@ Present:
 
 Planned:
 
-* fac
-* fib
+* fac [NUMS]: print the factorial of NUMS
+* fib [NUMS]: print the nth fibonacci numbers
 * factor [NUMS]: like factor(1), already existing
 * primes [N[-M]]: print all primes up to N or from N to M
 * hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
