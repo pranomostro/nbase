@@ -16,7 +16,7 @@ TAILQ_HEAD(leyhead, leyland)head=TAILQ_HEAD_INITIALIZER(head);
 
 typedef struct leyland
 {
-	size_t pos;
+	size_t width;
 	z_t val;
 	TAILQ_ENTRY(leyland)next;
 }leyland;
@@ -50,15 +50,15 @@ void pbw(z_t res, ulong i, ulong j)
 
 int main(int argc, char** argv)
 {
-	char* argv0, * resstr;
-	ulong count, nflag, pos, low, high, save;
-	leyland* smallest, * r, * t;
+	char* argv0, * result_str;
+	ulong lim, nflag, low, high, i, height;
+	leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
 
 	nflag=0;
 
 	TAILQ_INIT(&head);
-	resstr=calloc(CAP, sizeof(char));
+	result_str=calloc(CAP, sizeof(char));
 
 	if(setjmp(env))
 	{
@@ -69,11 +69,11 @@ int main(int argc, char** argv)
 
 	zsetup(env);
 
-	t=calloc(1, sizeof(leyland));
-	t->pos=2;
-	zinit(t->val);
-	zseti(t->val, 8);
-	TAILQ_INSERT_HEAD(&head, t, next);
+	tmp1=calloc(1, sizeof(leyland));
+	tmp1->width=2;
+	zinit(tmp1->val);
+	zseti(tmp1->val, 8);
+	TAILQ_INSERT_HEAD(&head, tmp1, next);
 
 	ARGBEGIN
 	{
@@ -84,56 +84,56 @@ int main(int argc, char** argv)
 		usage(argv0);
 	} ARGEND;
 
-	for(low=high=2, count=1; nflag==0||count<=nflag; count++)
+	for(low=high=2, lim=1; nflag==0||lim<=nflag; lim++)
 	{
 		smallest=TAILQ_FIRST(&head);
-		save=low-1;
-		TAILQ_FOREACH(t, &head, next)
+		i=low-1;
+		TAILQ_FOREACH(tmp1, &head, next)
 		{
-			save++;
-			if(zcmp(t->val, smallest->val)<=0)
+			i++;
+			if(zcmp(tmp1->val, smallest->val)<=0)
 			{
-				smallest=t;
-				pos=save;
+				smallest=tmp1;
+				height=i;
 			}
 		}
-		resstr=zstr(smallest->val, resstr, CAP);
+		result_str=zstr(smallest->val, result_str, CAP);
 
-		printf("%s %li %li\n", resstr, pos, smallest->pos);
+		printf("%s %li %li\n", result_str, height, smallest->width);
 
-		t=TAILQ_FIRST(&head);
-		if(t->pos>=low&&low==pos)
+		tmp1=TAILQ_FIRST(&head);
+		if(tmp1->width>=low&&low==height)
 		{
-			TAILQ_REMOVE(&head, t, next);
-			zfree(t->val);
-			free(t);
+			TAILQ_REMOVE(&head, tmp1, next);
+			zfree(tmp1->val);
+			free(tmp1);
 			low++;
 		}
-		if(!TAILQ_EMPTY(&head)&&pos>=low)
+		if(!TAILQ_EMPTY(&head)&&height>=low)
 		{
-			smallest->pos++;
-			pbw(smallest->val, pos, smallest->pos);
+			smallest->width++;
+			pbw(smallest->val, height, smallest->width);
 		}
-		if(TAILQ_EMPTY(&head)||TAILQ_LAST(&head, leyhead)->pos>2)
+		if(TAILQ_EMPTY(&head)||TAILQ_LAST(&head, leyhead)->width>2)
 		{
 			high++;
-			t=calloc(1, sizeof(leyland));
-			t->pos=2;
-			zinit(t->val);
-			pbw(t->val, high, t->pos);
-			TAILQ_INSERT_TAIL(&head, t, next);
+			tmp1=calloc(1, sizeof(leyland));
+			tmp1->width=2;
+			zinit(tmp1->val);
+			pbw(tmp1->val, high, tmp1->width);
+			TAILQ_INSERT_TAIL(&head, tmp1, next);
 		}
 	}
 
-	for(r=TAILQ_FIRST(&head); r; r=t)
+	for(tmp2=TAILQ_FIRST(&head); tmp2; tmp2=tmp1)
 	{
-		t=TAILQ_NEXT(r, next);
-		TAILQ_REMOVE(&head, r, next);
-		zfree(r->val);
-		free(r);
+		tmp1=TAILQ_NEXT(tmp2, next);
+		TAILQ_REMOVE(&head, tmp2, next);
+		zfree(tmp2->val);
+		free(tmp2);
 	}
 	zunsetup();
-	free(resstr);
+	free(result_str);
 
 	return 0;
 }
