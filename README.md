@@ -29,8 +29,8 @@ Utilities
 
 Present:
 
-* collatz: program that prints the collatz sequence for arguments/input
-* leyland: program that prints the leyland numbers, in ascending order
+* collatz [NUMS]: program that prints the collatz sequence for arguments/input
+* leyland -l LIM]: program that prints the leyland numbers, in ascending order
 
 Planned:
 
