@@ -29,7 +29,6 @@ static void usage(char* progname)
 
 void pbw(z_t res, ulong i, ulong j)
 {
-	fprintf(stderr, "setting to %li, %li\n", i, j);
 
 	z_t op1, op2;
 
@@ -52,7 +51,7 @@ void pbw(z_t res, ulong i, ulong j)
 int main(int argc, char** argv)
 {
 	char* argv0, * resstr;
-	ulong count, nflag, pos, low, high;
+	ulong count, nflag, pos, low, high, save;
 	leyland* smallest, * r, * t;
 	jmp_buf env;
 
@@ -88,17 +87,16 @@ int main(int argc, char** argv)
 	for(low=high=2, count=1; nflag==0||count<=nflag; count++)
 	{
 		smallest=TAILQ_FIRST(&head);
-		pos=low-1;
+		save=low-1;
 		TAILQ_FOREACH(t, &head, next)
 		{
-			if(zcmp(t->val, smallest->val)<0)
+			save++;
+			if(zcmp(t->val, smallest->val)<=0)
 			{
-				fprintf(stderr, "found new smallest at pos %li\n", pos);
 				smallest=t;
+				pos=save;
 			}
-			pos++;
 		}
-		assert(pos>=low);
 		resstr=zstr(smallest->val, resstr, CAP);
 
 		printf("%s %li %li\n", resstr, pos, smallest->pos);
@@ -106,7 +104,6 @@ int main(int argc, char** argv)
 		t=TAILQ_FIRST(&head);
 		if(t->pos>=low&&low==pos)
 		{
-			fprintf(stderr, "removing head\n");
 			TAILQ_REMOVE(&head, t, next);
 			zfree(t->val);
 			free(t);
@@ -114,16 +111,12 @@ int main(int argc, char** argv)
 		}
 		if(!TAILQ_EMPTY(&head)&&pos>=low)
 		{
-			fprintf(stderr, "increasing pos of smallest\n");
 			smallest->pos++;
-			fprintf(stderr, "smallest->pos: %li\n",smallest->pos);
 			pbw(smallest->val, pos, smallest->pos);
 		}
 		if(TAILQ_EMPTY(&head)||TAILQ_LAST(&head, leyhead)->pos>2)
 		{
-			fprintf(stderr, "adding to tail\n");
 			high++;
-			fprintf(stderr, "high: %li\n", high);
 			t=calloc(1, sizeof(leyland));
 			t->pos=2;
 			zinit(t->val);
