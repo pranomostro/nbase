@@ -8,8 +8,6 @@
 #include "zahl.h"
 #include "queue.h"
 
-const int CAP=65536;
-
 typedef unsigned long ulong;
 
 TAILQ_HEAD(leyhead, leyland)head=TAILQ_HEAD_INITIALIZER(head);
@@ -48,17 +46,26 @@ void pbw(z_t res, ulong i, ulong j)
 	zfree(op2);
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
-	char* argv0, * result_str;
+	char* argv0;
+	char* resultstr;
 	ulong lim, nflag, low, high, i, height;
 	leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
 
 	nflag=0;
 
-	TAILQ_INIT(&head);
-	result_str=calloc(CAP, sizeof(char));
+	ARGBEGIN
+	{
+	case 'l':
+		nflag=strtoul(EARGF(usage(argv0)), NULL, 10);
+		if(nflag==ULONG_MAX||nflag==0)
+			usage(argv0);
+		break;
+	default:
+		usage(argv0);
+	} ARGEND;
 
 	if(setjmp(env))
 	{
@@ -67,24 +74,17 @@ int main(int argc, char** argv)
 		exit(1);
 	}
 
-	zsetup(env);
+	TAILQ_INIT(&head);
+	resultstr=calloc(4096, sizeof(char));
 
+	zsetup(env);
 	tmp1=calloc(1, sizeof(leyland));
 	tmp1->width=2;
 	zinit(tmp1->val);
 	zseti(tmp1->val, 8);
 	TAILQ_INSERT_HEAD(&head, tmp1, next);
 
-	ARGBEGIN
-	{
-	case 'l':
-		nflag=atoi(EARGF(usage(argv0)));
-		break;
-	default:
-		usage(argv0);
-	} ARGEND;
-
-	for(low=high=2, lim=1; nflag==0||lim<=nflag; lim++)
+	for(low=high=2, lim=1; !nflag||lim<=nflag; lim++)
 	{
 		smallest=TAILQ_FIRST(&head);
 		i=low-1;
@@ -97,9 +97,9 @@ int main(int argc, char** argv)
 				height=i;
 			}
 		}
-		result_str=zstr(smallest->val, result_str, CAP);
+		resultstr=zstr(smallest->val, resultstr, 4096);
 
-		printf("%s %li %li\n", result_str, height, smallest->width);
+		printf("%s %li %li\n", resultstr, height, smallest->width);
 
 		tmp1=TAILQ_FIRST(&head);
 		if(tmp1->width>=low&&low==height)
@@ -132,8 +132,9 @@ int main(int argc, char** argv)
 		zfree(tmp2->val);
 		free(tmp2);
 	}
+
 	zunsetup();
-	free(result_str);
+	free(resultstr);
 
 	return 0;
 }

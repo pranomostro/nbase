@@ -34,7 +34,7 @@ void* nalgrow(void* data, size_t old, size_t new)
 		na=malloc(new);
 		if(na==NULL)
 		{
-			fputs("error: no memory left, exiting.", stderr);
+			fputs("nalgrow: no memory left, exiting.", stderr);
 			return NULL;
 		}
 		memcpy(na, data, old);

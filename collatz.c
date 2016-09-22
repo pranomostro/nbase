@@ -47,7 +47,7 @@ void collatz(char* str, size_t len)
 	printf("1\n");
 }
 
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 	jmp_buf env;
 
