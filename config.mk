@@ -1,9 +1,9 @@
 #paths
 PREFIX=/usr/local
 
-CC=cc
+CC=musl-gcc
 AR=ar
 RANLIB=ranlib
 
-CFLAGS=-std=c99 -Wall -g
-LDFLAGS=-g -static
+CFLAGS=-std=c99 -Wall -O2
+LDFLAGS=-s -static

@@ -8,6 +8,7 @@
 
 z_t op1, op2;
 struct line result;
+char* argv0;
 
 void collatz(char* str, size_t len)
 {
@@ -19,12 +20,12 @@ void collatz(char* str, size_t len)
 
 	if(zsets(op1, str)<0)
 	{
-		fprintf(stderr, "collatz: could not parse input line %s as number.\n", str);
+		fprintf(stderr, "%s: could not parse input line %s as number.\n", argv0, str);
 		return;
 	}
 	if(zcmpi(op1, 1)==-1)
 	{
-		fprintf(stderr, "collatz: the sequence only works with integers bigger than 0.\n");
+		fprintf(stderr, "%s: the sequence only works with integers bigger than 0.\n", argv0);
 		return;
 	}
 
@@ -58,6 +59,7 @@ void collatz(char* str, size_t len)
 int main(int argc, char* argv[])
 {
 	jmp_buf env;
+	argv0=*argv;
 
 	if(setjmp(env))
 	{
