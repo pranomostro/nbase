@@ -47,7 +47,8 @@ void pbw(z_t res, long i, long j)
 int main(int argc, char* argv[])
 {
 	char* argv0;
-	char* resultstr;
+	struct line result;
+	size_t resultsize;
 	long i, lim, nflag, low, high, height;
 	leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
@@ -72,8 +73,10 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
+	result.cap=4069;
+	result.data=calloc(result.cap, sizeof(char));
+
 	TAILQ_INIT(&head);
-	resultstr=calloc(4096, sizeof(char));
 
 	zsetup(env);
 	tmp1=calloc(1, sizeof(leyland));
@@ -95,9 +98,15 @@ int main(int argc, char* argv[])
 				height=i;
 			}
 		}
-		resultstr=zstr(smallest->val, resultstr, 4096);
+		resultsize=zstr_length(smallest->val, 10);
+		if(resultsize+1>result.cap)
+		{
+			result.data=nalgrow(result.data, result.cap, resultsize+512);
+			result.cap=resultsize+512;
+		}
+		result.data=zstr(smallest->val, result.data, result.cap);
 
-		printf("%s %li %li\n", resultstr, height, smallest->width);
+		printf("%s %li %li\n", result.data, height, smallest->width);
 
 		tmp1=TAILQ_FIRST(&head);
 		if(tmp1->width>=low&&low==height)
@@ -132,7 +141,7 @@ int main(int argc, char* argv[])
 	}
 
 	zunsetup();
-	free(resultstr);
+	free(result.data);
 
 	return 0;
 }

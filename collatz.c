@@ -7,11 +7,12 @@
 #include "util.h"
 
 z_t op1, op2;
+struct line result;
 
 void collatz(char* str, size_t len)
 {
+	size_t resultsize;
 	char* nl=strchr(str, '\n');
-	char* resstr=NULL;
 
 	if(nl!=NULL)
 		*nl='\0';
@@ -29,8 +30,15 @@ void collatz(char* str, size_t len)
 
 	while(zcmpi(op1, 1))
 	{
-		printf("%s ", (resstr=zstr(op1, NULL, 0)));
-		free(resstr);
+		resultsize=zstr_length(op1, 10);
+		result.data=zstr(op1, result.data, result.cap);
+		if(resultsize+1>result.cap)
+		{
+			result.data=nalgrow(result.data, result.cap, resultsize+512);
+			result.cap=resultsize+512;
+		}
+		printf("%s ", result.data);
+
 		if(zeven(op1))
 		{
 			zseti(op2, 2);
@@ -57,6 +65,9 @@ int main(int argc, char* argv[])
 		zunsetup();
 		exit(1);
 	}
+
+	result.cap=4096;
+	result.data=calloc(result.cap, sizeof(char));
 
 	zsetup(env);
 	zinit(op1);

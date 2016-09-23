@@ -10,7 +10,6 @@
 struct line
 {
 	char* data;
-	size_t len;
 	size_t cap;
 };
 
