@@ -8,8 +8,6 @@
 #include "zahl.h"
 #include "queue.h"
 
-typedef unsigned long ulong;
-
 TAILQ_HEAD(leyhead, leyland)head=TAILQ_HEAD_INITIALIZER(head);
 
 typedef struct leyland
@@ -25,7 +23,7 @@ static void usage(char* progname)
 	exit(2);
 }
 
-void pbw(z_t res, ulong i, ulong j)
+void pbw(z_t res, long i, long j)
 {
 
 	z_t op1, op2;
@@ -50,7 +48,7 @@ int main(int argc, char* argv[])
 {
 	char* argv0;
 	char* resultstr;
-	ulong lim, nflag, low, high, i, height;
+	long i, lim, nflag, low, high, height;
 	leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
 
@@ -59,8 +57,8 @@ int main(int argc, char* argv[])
 	ARGBEGIN
 	{
 	case 'l':
-		nflag=strtoul(EARGF(usage(argv0)), NULL, 10);
-		if(nflag==ULONG_MAX||nflag==0)
+		nflag=strtol(EARGF(usage(argv0)), NULL, 10);
+		if(nflag<=0)
 			usage(argv0);
 		break;
 	default:
