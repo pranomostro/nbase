@@ -14,15 +14,11 @@ limits.
 
 For more information, refer to the man-pages.
 
-Roadmap
--------
+Aim
+---
 
-1. Write all programs as simple as possible, but not optimized.
-2. Write the documentation (man-pages).
-3. Remove all possible arbitrary limits.
-4. Tune the programs (use smarter algorithms, cache results, ...).
-
-At the moment, this is still bare 1.
+* no arbitrary limits
+* programs as fast as possible
 
 Utilities
 ---------
