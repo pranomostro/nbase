@@ -85,13 +85,13 @@ install: all
 	mkdir -p $(PREFIX)/bin
 	cp -f $(BIN) $(PREFIX)/bin
 	cd $(PREFIX)/bin && chmod 755 $(BIN)
-	mkdir -p $(PREFIX)/man/man1
-	cp -f $(MAN) $(PREFIX)/man/man1
-	cd $(PREFIX)/man/man1 && chmod 644 $(MAN)
+	mkdir -p $(PREFIX)/share/man/man1
+	cp -f $(MAN) $(PREFIX)/share/man/man1
+	cd $(PREFIX)/share/man/man1 && chmod 644 $(MAN)
 
 uninstall:
 	cd $(PREFIX)/bin && rm -f $(BIN)
-	cd $(PREFIX)/man/man1 && rm -f $(MAN)
+	cd $(PREFIX)/share/man/man1 && rm -f $(MAN)
 
 clean:
 	rm -f $(BIN) $(OBJ) $(LIB)
