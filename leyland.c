@@ -49,22 +49,10 @@ int main(int argc, char* argv[])
 	char* argv0;
 	struct line result;
 	size_t resultsize;
-	long i, lim, nflag, low, high, height;
+	z_t lim, nflag, one;
+	long i, low, high, height;
 	leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
-
-	nflag=0;
-
-	ARGBEGIN
-	{
-	case 'l':
-		nflag=strtol(EARGF(usage(argv0)), NULL, 10);
-		if(nflag<=0)
-			usage(argv0);
-		break;
-	default:
-		usage(argv0);
-	} ARGEND;
 
 	if(setjmp(env))
 	{
@@ -72,20 +60,38 @@ int main(int argc, char* argv[])
 		zunsetup();
 		exit(1);
 	}
+	zsetup(env);
+
+	zinit(nflag);
+	zseti(nflag, 1);
+
+	ARGBEGIN
+	{
+	case 'l':
+		zsets(nflag, EARGF(usage(argv0)));
+		if(zcmpi(nflag, 0)<=0)
+			usage(argv0);
+		break;
+	default:
+		usage(argv0);
+	} ARGEND;
 
 	result.cap=4069;
 	result.data=calloc(result.cap, sizeof(char));
 
 	TAILQ_INIT(&head);
 
-	zsetup(env);
+	zinit(one);
+	zseti(one, 1);
+	zinit(lim);
+	zseti(lim, 1);
 	tmp1=calloc(1, sizeof(leyland));
 	tmp1->width=2;
 	zinit(tmp1->val);
 	zseti(tmp1->val, 8);
 	TAILQ_INSERT_HEAD(&head, tmp1, next);
 
-	for(low=high=2, lim=1; !nflag||lim<=nflag; lim++)
+	for(low=high=2; zcmp(lim, nflag)<=0; zadd(lim, lim, one))
 	{
 		smallest=TAILQ_FIRST(&head);
 		i=low-1;
