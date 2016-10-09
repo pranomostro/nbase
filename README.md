@@ -20,16 +20,19 @@ Aim
 Utilities
 ---------
 
-Present:
+Finished:
 
 * collatz [NUMS]: program that prints the collatz sequence for arguments/input
 * leyland -l [LIM]: program that prints the leyland numbers, in ascending order
+
+Present:
+
+* factor [NUMS]: like factor(1), already existing
 
 Planned:
 
 * fac [NUMS]: print the factorial of NUMS
 * fib [NUMS]: print the nth fibonacci numbers
-* factor [NUMS]: like factor(1), already existing
 * primes [N[-M]]: print all primes up to N or from N to M
 * hamming [-l NUM]: print all/the first NUM hamming numbers,
 	sorted ascending
