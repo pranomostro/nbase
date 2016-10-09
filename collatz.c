@@ -80,6 +80,7 @@ int main(int argc, char* argv[])
 	zfree(op1);
 	zfree(op2);
 	zunsetup();
+	free(result.data);
 
 	return 0;
 }
