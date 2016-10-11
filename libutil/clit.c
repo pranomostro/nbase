@@ -6,7 +6,7 @@
 
 void cliterate(size_t argc, char** argv, FILE* input, void (*itf)(char*, size_t))
 {
-	char* line;
+	char* line, * rp;
 	size_t linelen, i;
 
 	if(argc>1)
@@ -15,8 +15,11 @@ void cliterate(size_t argc, char** argv, FILE* input, void (*itf)(char*, size_t)
 	else
 	{
 		line=calloc((linelen=BUFSIZ), sizeof(char));
-		while((line=nalread(line, &linelen, input))!=NULL)
+		while((rp=nalread(line, &linelen, input))!=NULL)
+		{
+			line=rp;
 			itf(line, linelen);
+		}
 		free(line);
 	}
 }
