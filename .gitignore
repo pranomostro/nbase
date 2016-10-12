@@ -3,6 +3,7 @@
 *.a
 leyland
 collatz
+fac
 
 #results
 *.txt

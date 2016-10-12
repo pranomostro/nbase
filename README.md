@@ -17,12 +17,6 @@ Aim
 * no arbitrary limits
 * programs as fast as possible
 
-Todo
-----
-
-* add sbase/ubase OpenBSD extensions
-* convert man-pages to mandoc
-
 Utilities
 ---------
 

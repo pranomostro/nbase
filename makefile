@@ -57,7 +57,8 @@ LIB = $(LIBZAHL) $(LIBUTIL)
 
 BIN =\
 	collatz\
-	leyland
+	leyland\
+	fac
 
 LIBZAHLOBJ = $(LIBZAHLSRC:.c=.o)
 LIBUTILOBJ = $(LIBUTILSRC:.c=.o)
