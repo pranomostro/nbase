@@ -19,8 +19,7 @@ typedef struct leyland
 
 static void usage(char* progname)
 {
-	fprintf(stderr, "%s [-l LIM]\n", progname);
-	exit(2);
+	eprintf("%s [-l LIM]\n", progname);
 }
 
 void pbw(z_t res, long i, long j)
@@ -77,7 +76,7 @@ int main(int argc, char* argv[])
 	} ARGEND;
 
 	result.cap=4069;
-	result.data=calloc(result.cap, sizeof(char));
+	result.data=ecalloc(result.cap, sizeof(char));
 
 	TAILQ_INIT(&head);
 
@@ -85,7 +84,7 @@ int main(int argc, char* argv[])
 	zseti(one, 1);
 	zinit(lim);
 	zseti(lim, 1);
-	tmp1=calloc(1, sizeof(leyland));
+	tmp1=ecalloc(1, sizeof(leyland));
 	tmp1->width=2;
 	zinit(tmp1->val);
 	zseti(tmp1->val, 8);
@@ -130,7 +129,7 @@ int main(int argc, char* argv[])
 		if(TAILQ_EMPTY(&head)||TAILQ_LAST(&head, leyhead)->width>2)
 		{
 			high++;
-			tmp1=calloc(1, sizeof(leyland));
+			tmp1=ecalloc(1, sizeof(leyland));
 			tmp1->width=2;
 			zinit(tmp1->val);
 			pbw(tmp1->val, high, tmp1->width);

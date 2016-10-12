@@ -20,12 +20,12 @@ void collatz(char* str, size_t len)
 
 	if(zsets(op1, str)<0)
 	{
-		fprintf(stderr, "%s: could not parse input line %s as number.\n", argv0, str);
+		weprintf("could not parse input line %s as number.\n", str);
 		return;
 	}
 	if(zcmpi(op1, 1)==-1)
 	{
-		fprintf(stderr, "%s: the sequence only works with integers bigger than 0.\n", argv0);
+		weprintf("the sequence only works with integers bigger than 0.\n");
 		return;
 	}
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 	}
 
 	result.cap=4096;
-	result.data=calloc(result.cap, sizeof(char));
+	result.data=ecalloc(result.cap, sizeof(char));
 
 	zsetup(env);
 	zinit(op1);
