@@ -35,7 +35,7 @@ void collatz(char* str, size_t len)
 		result.data=zstr(op1, result.data, result.cap);
 		if(resultsize+1>result.cap)
 		{
-			result.data=nalgrow(result.data, result.cap, resultsize+512);
+			result.data=ereallocarray(result.data, resultsize+512, sizeof(result.data[0]));
 			result.cap=resultsize+512;
 		}
 		printf("%s ", result.data);

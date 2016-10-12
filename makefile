@@ -47,7 +47,11 @@ LIBZAHLSRC =\
 LIBUTIL = libutil.a
 LIBUTILSRC =\
 	libutil/clit.c\
-	libutil/nal.c
+	libutil/nal.c\
+	libutil/ealloc.c\
+	libutil/eprintf.c\
+	libutil/reallocarray.c\
+	libutil/strtonum.c
 
 LIB = $(LIBZAHL) $(LIBUTIL)
 

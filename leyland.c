@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
 	zsetup(env);
 
 	zinit(nflag);
-	zseti(nflag, 1);
+	zseti(nflag, 0);
 
 	ARGBEGIN
 	{
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 	zseti(tmp1->val, 8);
 	TAILQ_INSERT_HEAD(&head, tmp1, next);
 
-	for(low=high=2; zcmp(lim, nflag)<=0; zadd(lim, lim, one))
+	for(low=high=2; zzero(nflag)||zcmp(lim, nflag)<=0; zadd(lim, lim, one))
 	{
 		smallest=TAILQ_FIRST(&head);
 		i=low-1;
@@ -107,7 +107,7 @@ int main(int argc, char* argv[])
 		resultsize=zstr_length(smallest->val, 10);
 		if(resultsize+1>result.cap)
 		{
-			result.data=nalgrow(result.data, result.cap, resultsize+512);
+			result.data=ereallocarray(result.data, resultsize+512, sizeof(result.data[0]));
 			result.cap=resultsize+512;
 		}
 		result.data=zstr(smallest->val, result.data, result.cap);
