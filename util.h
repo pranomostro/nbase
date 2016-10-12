@@ -38,6 +38,10 @@ void enprintf(int, const char *, ...);
 void eprintf(const char *, ...);
 void weprintf(const char *, ...);
 
+void enfshut(int, FILE *, const char *);
+void efshut(FILE *, const char *);
+int  fshut(FILE *, const char *);
+
 long long strtonum(const char *, long long, long long, const char **);
 long long enstrtonum(int, const char *, long long, long long);
 long long estrtonum(const char *, long long, long long);

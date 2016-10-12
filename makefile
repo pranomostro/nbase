@@ -47,18 +47,20 @@ LIBZAHLSRC =\
 LIBUTIL = libutil.a
 LIBUTILSRC =\
 	libutil/clit.c\
-	libutil/nal.c\
 	libutil/ealloc.c\
 	libutil/eprintf.c\
+	libutil/fshut.c\
+	libutil/nal.c\
 	libutil/reallocarray.c\
 	libutil/strtonum.c
+
 
 LIB = $(LIBZAHL) $(LIBUTIL)
 
 BIN =\
 	collatz\
-	leyland\
-	fac
+	fac\
+	leyland
 
 LIBZAHLOBJ = $(LIBZAHLSRC:.c=.o)
 LIBUTILOBJ = $(LIBUTILSRC:.c=.o)
