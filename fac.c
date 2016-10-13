@@ -38,12 +38,12 @@ void fac(char* str, size_t len)
 		zsub(op1, op1, op3);
 	}
 	resultsize=zstr_length(op2, 10);
-	result.data=zstr(op2, result.data, result.cap);
 	if(resultsize+1>result.cap)
 	{
 		result.data=ereallocarray(result.data, resultsize+512, sizeof(result.data[0]));
 		result.cap=resultsize+512;
 	}
+	result.data=zstr(op2, result.data, result.cap);
 	printf("%s\n", result.data);
 }
 

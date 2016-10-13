@@ -32,12 +32,12 @@ void collatz(char* str, size_t len)
 	while(zcmpi(op1, 1))
 	{
 		resultsize=zstr_length(op1, 10);
-		result.data=zstr(op1, result.data, result.cap);
 		if(resultsize+1>result.cap)
 		{
 			result.data=ereallocarray(result.data, resultsize+512, sizeof(result.data[0]));
 			result.cap=resultsize+512;
 		}
+		result.data=zstr(op1, result.data, result.cap);
 		printf("%s ", result.data);
 
 		if(zeven(op1))
