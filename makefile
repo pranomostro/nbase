@@ -60,6 +60,7 @@ LIB = $(LIBZAHL) $(LIBUTIL)
 BIN =\
 	collatz\
 	fac\
+	fib\
 	leyland
 
 LIBZAHLOBJ = $(LIBZAHLSRC:.c=.o)
