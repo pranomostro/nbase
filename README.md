@@ -24,6 +24,7 @@ Finished:
 
 * collatz [NUMS]: program that prints the collatz sequence for arguments/input
 * fac [NUMS]: print the factorial of NUMS/or the input lines
+* fib [NUMS]: print the nth fibonacci numbers
 * leyland -l [LIM]: program that prints the leyland numbers, in ascending order
 
 Present:
@@ -33,7 +34,6 @@ Present:
 
 Planned:
 
-* fib [NUMS]: print the nth fibonacci numbers
 * goldbach [-a] [NUMS]: accept an even number, prints a of all (if called  with -a)
 	primes that add up to the given number. Pairs are separated by " ", lists
 	of pairs are separated by ":"
