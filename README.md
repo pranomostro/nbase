@@ -23,24 +23,23 @@ Utilities
 Finished:
 
 * collatz [NUMS]: program that prints the collatz sequence for arguments/input
+* fac [NUMS]: print the factorial of NUMS/or the input lines
 * leyland -l [LIM]: program that prints the leyland numbers, in ascending order
 
 Present:
 
-* factor [NUMS]: like factor(1), already existing
+* factor [NUMS]: like factor(1). To compile it, type `gcc -lpthread -lgmp -o factor factor.c libutil.a`.
+	The gmp dependency will be removed
 
 Planned:
 
-* fac [NUMS]: print the factorial of NUMS
 * fib [NUMS]: print the nth fibonacci numbers
+* goldbach [-a] [NUMS]: accept an even number, prints a of all (if called  with -a)
+	primes that add up to the given number. Pairs are separated by " ", lists
+	of pairs are separated by ":"
+* hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
+* isprime [NUMS]: print "prime" and "nonprime" if a number from the arguments/input
 * primes [N[-M]]: print all primes up to N or from N to M
-* hamming [-l NUM]: print all/the first NUM hamming numbers,
-	sorted ascending
-* isprime [NUMS]: print "prime" and "nonprime" if a number
-	from the arguments/input (like factor(1))
-* goldbach [-a] [NUMS]: accept an even number, prints a or
-	all (if called  with -a) primes that add up to the
-	given number. Pairs are separated by " ", lists of pairs are separated by ":"
 
 Requirements
 ------------

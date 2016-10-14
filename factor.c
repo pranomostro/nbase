@@ -55,33 +55,6 @@ static const char *questioned = "";
 # define zcmp_i(a, b)                mpz_cmp_ui(a, b)
 # define zparse(r, s)                mpz_init_set_str(r, s, 10);
 typedef mpz_t bigint_t;
-#elif defined(USE_TOMMATH)
-# include <tommath.h>
-# define lowest_bit(x)               mp_cnt_lsb(x)
-# define shift_right(r, x, steps)    mp_div_2d(x, steps, r, 0)
-static int prime_test(mp_int *x)     { int ret; mp_prime_is_prime(x, certainty, &ret); return ret;}
-# define to_string(x)                (mp_todecimal(x, strbuf), strbuf)
-# define div_mod(q, r, n, d)         mp_div(n, d, q, r)
-# define bit_count(x)                mp_count_bits(x)
-# define gcd(r, a, b)                mp_gcd(a, b, r)
-# define zabs(r, x)                  mp_abs(x, r)
-# define zmul(r, a, b)               mp_mul(a, b, r)
-# define zmul_i(r, a, b)             (zset_i(ctx->tmp, b), zmul(r, a, ctx->tmp))
-# define zadd(r, a, b)               mp_add(a, b, r)
-# define zadd_i(r, a, b)             (zset_i(ctx->tmp, b), zadd(r, a, ctx->tmp))
-# define zsub(r, a, b)               mp_sub(a, b, r)
-# define zmod(r, a, b)               mp_mod(a, b, r)
-# define zsqrt(r, x)                 mp_sqrt(x, r)
-static int zsqrt_test(mp_int *r, mp_int *x)  { int ret; mp_is_square(x, &ret); zsqrt(r, x); return ret; }
-# define zinit(x)                    mp_init(x)
-# define zfree(x)                    mp_clear(x)
-/*# define zset(r, x)                  mp_copy(x, r) /\* TODO Is this really correct? */
-static void zset(mp_int *r, mp_int *x)  { mp_zero(r); zadd(r, r, x); }
-# define zset_i(r, x)                mp_set_int(r, x)
-# define zcmp(a, b)                  mp_cmp(a, b)
-# define zcmp_i(a, b)                (zset_i(ctx->tmp, b), zcmp(a, ctx->tmp))
-# define zparse(r, s)                (zinit(r), mp_read_radix(r, s, 10))
-typedef mp_int bigint_t[1];
 #endif
 
 #define elementsof(x)               (sizeof(x) / sizeof(*x))
