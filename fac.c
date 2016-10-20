@@ -29,6 +29,8 @@ void fac(char* str, size_t len)
 		return;
 	}
 
+	printf("%s: ", str);
+
 	zsets(op1, str);
 	zset(op2, op3);
 

@@ -29,6 +29,8 @@ void fib(char* str, size_t len)
 		return;
 	}
 
+	printf("%s: ", str);
+
 	zsets(op1, str);
 	zseti(op2, 1);
 	zseti(op3, 1);
