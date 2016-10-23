@@ -8,6 +8,8 @@
 #include "zahl.h"
 #include "queue.h"
 
+char* argv0;
+
 TAILQ_HEAD(leyhead, leyland)head=TAILQ_HEAD_INITIALIZER(head);
 
 typedef struct leyland
@@ -17,9 +19,9 @@ typedef struct leyland
 	TAILQ_ENTRY(leyland)next;
 }leyland;
 
-static void usage(char* progname)
+static void usage(void)
 {
-	eprintf("%s [-l LIM]\n", progname);
+	eprintf("%s [-l LIM]\n", argv0);
 }
 
 void pbw(z_t res, long i, long j)
@@ -45,7 +47,6 @@ void pbw(z_t res, long i, long j)
 
 int main(int argc, char* argv[])
 {
-	char* argv0;
 	struct line result;
 	size_t resultsize;
 	z_t lim, nflag, one;
@@ -67,12 +68,12 @@ int main(int argc, char* argv[])
 	ARGBEGIN
 	{
 	case 'l':
-		zsets(nflag, EARGF(usage(argv0)));
+		zsets(nflag, EARGF(usage()));
 		if(zcmpi(nflag, 0)<=0)
-			usage(argv0);
+			usage();
 		break;
 	default:
-		usage(argv0);
+		usage();
 	} ARGEND;
 
 	result.cap=4069;
