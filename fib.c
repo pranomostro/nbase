@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 
 	if(setjmp(env))
 	{
-		perror(0);
+		zperror(argv0);
 		zunsetup();
 		exit(1);
 	}
