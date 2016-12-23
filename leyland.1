@@ -1,21 +1,27 @@
-.TH LEYLAND 1
-.SH NAME
-leyland \- print the leyland numbers
-
-.SH SYNOPSIS
-leyland [-l LIM]
-
-.SH DESCRIPTION
-leyland prints the leyland numbers (every number representable by a^b+b^a), in ascending order.
-If given no limit, it starts printing all leyland numbers (will run infinitely).
-
-.SH OPTIONS
-.TP
-.BI "-l LIM"
-print the first LIM leyland numbers.
-
-.SH STATUS
-0 on success, 1 when it prints the usage and 2 in the case of a libzahl error.
-
-.SH AUTHOR
-pranomostro (pranomestro@gmail.com).
+.Dd 2016-02-25
+.Dt LEYLAND 1
+.Os nbase
+.Sh NAME
+.Nm leyland
+.Nd print the leyland numbers
+.Sh SYNOPSIS
+.Nm
+.Op Fl l Ar N
+.Sh DESCRIPTION
+.Nm
+prints the N first (or all) leyland numbers (every number representable
+with a^b+b^a where a==b!=1) in ascending order.
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl l Ar N
+Print only the
+.Ar N
+first leyland numbers.
+.El
+.Sh EXIT STATUS
+.Bl -tag -width Ds
+.It 0
+The program terminated successfully.
+.It > 1
+An error occurred.
+.El

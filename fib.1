@@ -1,16 +1,20 @@
-.TH FIB 1
-.SH NAME
-fib \- print the nth fibonacci number
-
-.SH SYNOPSIS
-fib [NUMBERS]
-
-.SH DESCRIPTION
-fac prints its input, followd by a colon and the fibonacci number of
-either the command line arguments or the input.
-
-.SH STATUS
-0 on success and 1 when a libzahl error occurs.
-
-.SH AUTHOR
-pranomostro (pranomestro@gmail.com).
+.Dd 2016-02-25
+.Dt FIB 1
+.Os nbase
+.Sh NAME
+.Nm fib
+.Nd print fibonacci numbers
+.Sh SYNOPSIS
+.Nm
+.Op numbers
+.Sh DESCRIPTION
+.Nm
+prints for each of it's input/cli arguments the argument, a colon
+and the fibonacci number of that argument.
+.Sh EXIT STATUS
+.Bl -tag -width Ds
+.It 0
+Program exited normally after processing all arguments.
+.It > 1
+An error occurred.
+.El

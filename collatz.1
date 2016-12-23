@@ -1,16 +1,21 @@
-.TH COLLATZ 1
-.SH NAME
-collatz \- print the collatz sequence of the input
-
-.SH SYNOPSIS
-collatz [NUMBERS]
-
-.SH DESCRIPTION
-collatz prints the collatz sequence of either the command line arguments
-or the input, separated by spaces.
-
-.SH STATUS
-0 on success and 1 when a libzahl error occurs.
-
-.SH AUTHOR
-pranomostro (pranomestro@gmail.com).
+.Dd 2016-02-25
+.Dt COLLATZ 1
+.Os nbase
+.Sh NAME
+.Nm collatz
+.Nd print collatz sequences
+.Sh SYNOPSIS
+.Nm
+.Op numbers
+.Sh DESCRIPTION
+.Nm
+prints the collatz sequence of either the cli arguments
+.Ar numbers
+or the input. The output sequence is separated by spaces.
+.Sh EXIT STATUS
+.Bl -tag -width Ds
+.It 0
+Program exited normally after processing all arguments.
+.It > 1
+An error occurred.
+.El

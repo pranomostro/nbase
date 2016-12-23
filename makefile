@@ -67,7 +67,7 @@ LIBZAHLOBJ = $(LIBZAHLSRC:.c=.o)
 LIBUTILOBJ = $(LIBUTILSRC:.c=.o)
 OBJ = $(BIN:=.o) $(LIBZAHLOBJ) $(LIBUTILOBJ)
 SRC = $(BIN:=.c)
-MAN= $(BIN:=.1)
+MAN = $(BIN:=.1)
 
 all: $(BIN)
 
