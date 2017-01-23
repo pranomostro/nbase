@@ -6,4 +6,4 @@ AR=ar
 RANLIB=ranlib
 
 CFLAGS=-s -std=c99 -Wall -O2 -DGOOD_RAND
-LDFLAGS= -static
+LDFLAGS= -static -lpthread

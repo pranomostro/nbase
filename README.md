@@ -68,4 +68,4 @@ possible to write something like this in a suckless manner.
 License
 =======
 
-See the file ./COPYING.
+See the file ./LICENSE.

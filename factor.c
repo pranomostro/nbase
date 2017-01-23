@@ -9,6 +9,7 @@
 
 #include "arg.h"
 #include "util.h"
+#include "zahl.h"
 
 /*
  * Optimisations that have been excluded.
@@ -66,13 +67,10 @@ enum { POLLARDS_RHO_INITIAL_SEED = 0 };
 enum { POLLARDS_RHO_SEED_INCREASEMENT = 500 };
 
 struct context {
-	bigint_t div_n, div_q, div_r, div_d;
-	bigint_t *div_stack;
+	z_t div_n, div_q, div_r, div_d;
+	z_t *div_stack;
 	size_t div_stack_size;
-	bigint_t factor, d, x, y, conj_a, conj_b;
-#ifdef USE_TOMMATH
-	bigint_t tmp;
-#endif
+	z_t factor, d, x, y, conj_a, conj_b;
 };
 
 struct thread_data {
@@ -562,7 +560,7 @@ main(int argc, char *argv[])
 	long temp;
 	int ret = 0;
 	struct context ctx;
-	bigint_t reusable_seed, reusable_next;
+	z_t reusable_seed, reusable_next;
 
 	ARGBEGIN {
 	case 'c':
