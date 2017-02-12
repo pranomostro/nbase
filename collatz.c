@@ -72,13 +72,11 @@ int main(int argc, char* argv[])
 	result.data=ecalloc(result.cap, sizeof(char));
 
 	zsetup(env);
-	zinit(op1);
-	zinit(op2);
+	zinit(op1), zinit(op2);
 
 	cliterate(argc, argv, stdin, collatz);
 
-	zfree(op1);
-	zfree(op2);
+	zfree(op1), zfree(op2);
 	zunsetup();
 	free(result.data);
 

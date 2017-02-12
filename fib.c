@@ -68,20 +68,12 @@ int main(int argc, char* argv[])
 	result.data=calloc(result.cap, sizeof(char));
 
 	zsetup(env);
-	zinit(op1);
-	zinit(op2);
-	zinit(op3);
-	zinit(op4);
-	zinit(op5);
+	zinit(op1), zinit(op2), zinit(op3), zinit(op4), zinit(op5);
 	zseti(op4, 1);
 
 	cliterate(argc, argv, stdin, fib);
 
-	zfree(op1);
-	zfree(op2);
-	zfree(op3);
-	zfree(op4);
-	zfree(op5);
+	zfree(op1), zfree(op2), zfree(op3), zfree(op4), zfree(op5);
 	zunsetup();
 	free(result.data);
 

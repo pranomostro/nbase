@@ -5,5 +5,5 @@ CC=musl-gcc
 AR=ar
 RANLIB=ranlib
 
-CFLAGS=-s -std=c99 -Wall -O2 -DGOOD_RAND
-LDFLAGS= -static -lpthread
+CFLAGS=-g -std=c99 -Wall -DGOOD_RAND
+LDFLAGS= -g -static

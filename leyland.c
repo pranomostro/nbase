@@ -29,11 +29,9 @@ void pbw(z_t res, long i, long j)
 
 	z_t op1, op2;
 
-	zinit(op1);
-	zinit(op2);
+	zinit(op1), zinit(op2);
 
-	zseti(op1, i);
-	zseti(op2, j);
+	zseti(op1, i), zseti(op2, j);
 
 	zpow(res, op1, op2);
 	zseti(op1, i);
@@ -41,8 +39,7 @@ void pbw(z_t res, long i, long j)
 	zpow(op1, op2, op1);
 	zadd(res, op1, res);
 
-	zfree(op1);
-	zfree(op2);
+	zfree(op1), zfree(op2);
 }
 
 int main(int argc, char* argv[])

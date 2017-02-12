@@ -60,7 +60,6 @@ LIB = $(LIBZAHL) $(LIBUTIL)
 BIN =\
 	collatz\
 	fac\
-	factor\
 	fib\
 	leyland
 
