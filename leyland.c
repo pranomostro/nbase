@@ -17,7 +17,7 @@ typedef struct leyland
 	size_t width;
 	z_t val;
 	TAILQ_ENTRY(leyland)next;
-}leyland;
+} leyland;
 
 static void usage(void)
 {

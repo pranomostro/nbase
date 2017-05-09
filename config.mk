@@ -1,9 +1,12 @@
-#paths
 PREFIX=/usr/local
 
-CC=musl-gcc
+CC=cc
 AR=ar
 RANLIB=ranlib
 
-CFLAGS=-g -std=c99 -Wall -DGOOD_RAND
-LDFLAGS= -g -static
+CFLAGS=-Wall -Wextra -std=c99 -pedantic -O2 -DGOOD_RAND
+LDFLAGS=-s
+
+BIN=collatz fac fib leyland
+MAN=$(BIN:=.1)
+CONF=config.mk

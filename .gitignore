@@ -1,23 +1,7 @@
-#binaries
-*.o
-*.a
 leyland
 collatz
 fac
 fib
 factor
-
-#results
-*.txt
-*.zip
-
-#temporary files
-core.*
-vgcore.*
-errs
-
-#profiling information
-gmon.out
-
-#the TODO file.
-TODO
+*.o
+*.a

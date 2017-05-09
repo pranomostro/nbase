@@ -2,35 +2,24 @@ Base utilities for numbers
 ===========================
 
 nbase contains some programs meant to accompany sbase and ubase with some
-utilities meant to deal with numbers.  This includes factoring, checking
-primality, leyland numbers, collatz sequences and probably a bit more.
+utilities meant to deal with numbers, using libzahl. This includes factoring, checking
+primality, leyland numbers, collatz sequences and more.
 
-These utilities are built with libzahl, which means they don't have any
-arbitrary limits.
-
-For more information, refer to the man-pages.
-
-
-Aim
----
-
-* no arbitrary limits
-* programs as fast as possible
+For more information on individual utilities, refer to the man-pages.
 
 Utilities
 ---------
 
 Finished:
 
-* collatz [NUMS]: program that prints the collatz sequence for arguments/input
-* fac [NUMS]: print the factorial of NUMS/or the input lines
-* fib [NUMS]: print the nth fibonacci numbers
-* leyland -l [LIM]: program that prints the leyland numbers, in ascending order
+* collatz
+* fac
+* fib
+* leyland
 
 Present:
 
-* factor [NUMS]: like factor(1). To compile it, type `gcc -lpthread -lgmp -o factor factor.c libutil.a`.
-	The gmp dependency will be removed
+* factor: like factor(1). To compile it, type `gcc -lpthread -lgmp -o factor factor.c libutil.a`. The gmp dependency will be removed.
 
 Planned:
 
@@ -40,12 +29,6 @@ Planned:
 * hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
 * isprime [NUMS]: print "prime" and "nonprime" if a number from the arguments/input
 * primes [N[-M]]: print all primes up to N or from N to M
-
-Requirements
-------------
-
-A standard C99 compiler and a C standard
-library, as well as make. That's it.
 
 Installation
 ------------
@@ -62,10 +45,10 @@ Thanks
 ======
 
 Thanks to [maandree](https://github.com/maandree) for
-[libzahl](http://git.suckless.org/libzahl) that makes it
-possible to write something like this in a suckless manner.
+[libzahl](http://git.suckless.org/libzahl) that makes it possible to
+write something like this in a suckless manner.
 
 License
 =======
 
-See the file ./LICENSE.
+The [MIT/X11 license](./LICENSE).
