@@ -23,7 +23,7 @@ Present:
 
 Planned:
 
-* goldbach [-a] [NUMS]: accept an even number, prints a of all (if called  with -a)
+* goldbach [-a] [NUMS]: accept an even number, prints a of all (if called with -a)
 	primes that add up to the given number. Pairs are separated by " ", lists
 	of pairs are separated by ":"
 * hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
