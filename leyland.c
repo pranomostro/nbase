@@ -21,7 +21,7 @@ typedef struct leyland
 
 static void usage(void)
 {
-	eprintf("%s [-l LIM]\n", argv0);
+	eprintf("%s [-l lim]\n", argv0);
 }
 
 void pbw(z_t res, long i, long j)

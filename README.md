@@ -46,7 +46,8 @@ Thanks
 
 Thanks to [maandree](https://github.com/maandree) for
 [libzahl](http://git.suckless.org/libzahl) that makes it possible to
-write something like this in a suckless manner.
+write something like this in a suckless manner. He is also the author
+of factor.c and factor.1.
 
 License
 =======
