@@ -1,27 +1,29 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "../util.h"
 
-const int RESIZEFACTOR=2;
-
-char* nalread(char* in, size_t* len, FILE* input)
+size_t nalread(char** in, size_t* len, FILE* input)
 {
-	size_t readlen=(*len-1)/2;
-	char* readpos=in;
+	size_t readlen=(*len-1)/2, res=0, fw;
+	char* readpos=*in;
 
 	while(1)
 	{
 		if(fgets(readpos, readlen, input)==NULL)
 			break;
-		if(readpos[strnlen(readpos, *len)-1]=='\n')
+		res=strnlen(readpos, readlen);
+		if(readpos[res-1]=='\n')
 			break;
-		in=(char*)ereallocarray(in, sizeof(char)*((*len)*RESIZEFACTOR), sizeof(*in));
-		(*len)*=RESIZEFACTOR;
-		readlen=(*len)-strnlen(in, *len)-1;
-		readpos=in+strnlen(in, *len);
+		fw=(readpos-(*in))+res;
+		*in=(char*)reallocarray(*in, (*len)*2, sizeof(**in));
+		if(!*in)
+			return 0;
+		(*len)*=2;
+		readpos=(*in)+fw;
+		readlen=(*len)-(readpos-*in);
 	}
 
-	return feof(input)?NULL:in;
+	return (readpos-*in)+res;
 }

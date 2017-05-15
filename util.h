@@ -17,7 +17,7 @@ struct line
 
 extern char *argv0;
 
-char* nalread(char* in, size_t* len, FILE* input);
+size_t nalread(char** in, size_t* len, FILE* input);
 void cliterate(size_t argc, char** argv, FILE* input, void (*itf)(char*, size_t));
 
 void *ecalloc(size_t, size_t);
