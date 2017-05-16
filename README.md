@@ -13,7 +13,7 @@ Utilities
 Finished:
 
 * collatz
-* fac
+* fact
 * fib
 * leyland
 

@@ -10,7 +10,7 @@ z_t op1, op2, op3;
 struct line result;
 char* argv0;
 
-void fac(char* str, size_t len)
+void fact(char* str, size_t len)
 {
 	size_t resultsize;
 	char* nl=strchr(str, '\n');
