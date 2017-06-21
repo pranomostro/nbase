@@ -10,14 +10,14 @@
 
 char* argv0;
 
-TAILQ_HEAD(leyhead, leyland)head=TAILQ_HEAD_INITIALIZER(head);
+TAILQ_HEAD(leyhead, Leyland)head=TAILQ_HEAD_INITIALIZER(head);
 
-typedef struct leyland
+typedef struct
 {
 	size_t width;
 	z_t val;
-	TAILQ_ENTRY(leyland)next;
-} leyland;
+	TAILQ_ENTRY(Leyland)next;
+} Leyland;
 
 static void usage(void)
 {
@@ -44,11 +44,11 @@ void pbw(z_t res, long i, long j)
 
 int main(int argc, char* argv[])
 {
-	struct line result;
+	struct Line result;
 	size_t resultsize;
 	z_t lim, nflag, one;
 	long i, low, high, height;
-	leyland* smallest, * tmp1, * tmp2;
+	Leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
 
 	if(setjmp(env))
@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 	zseti(one, 1);
 	zinit(lim);
 	zseti(lim, 1);
-	tmp1=ecalloc(1, sizeof(leyland));
+	tmp1=ecalloc(1, sizeof(Leyland));
 	tmp1->width=2;
 	zinit(tmp1->val);
 	zseti(tmp1->val, 8);
@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
 		if(TAILQ_EMPTY(&head)||TAILQ_LAST(&head, leyhead)->width>2)
 		{
 			high++;
-			tmp1=ecalloc(1, sizeof(leyland));
+			tmp1=ecalloc(1, sizeof(Leyland));
 			tmp1->width=2;
 			zinit(tmp1->val);
 			pbw(tmp1->val, high, tmp1->width);

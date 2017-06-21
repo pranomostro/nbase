@@ -7,7 +7,7 @@
 #include "util.h"
 
 z_t op1, op2;
-struct line result;
+struct Line result;
 char* argv0;
 
 void collatz(char* str, size_t len)

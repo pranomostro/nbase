@@ -7,7 +7,7 @@
 #include "util.h"
 
 z_t op1, op2, op3;
-struct line result;
+struct Line result;
 char* argv0;
 
 void fact(char* str, size_t len)
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 	zinit(op1), zinit(op2), zinit(op3);
 	zseti(op3, 1);
 
-	cliterate(argc, argv, stdin, fac);
+	cliterate(argc, argv, stdin, fact);
 
 	zfree(op1), zfree(op2), zfree(op3);
 	zunsetup();

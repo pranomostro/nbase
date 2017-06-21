@@ -7,7 +7,7 @@
 #include "util.h"
 
 z_t op1, op2, op3, op4, op5;
-struct line result;
+struct Line result;
 char* argv0;
 
 void fib(char* str, size_t len)

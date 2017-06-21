@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-struct line
+struct Line
 {
 	char* data;
 	size_t cap;
