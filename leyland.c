@@ -45,9 +45,9 @@ void pbw(z_t res, long i, long j)
 int main(int argc, char* argv[])
 {
 	struct Line result;
-	size_t resultsize;
+	size_t resultsize, low, high, height;
 	z_t lim, nflag, one;
-	long i, low, high, height;
+	long i;
 	Leyland* smallest, * tmp1, * tmp2;
 	jmp_buf env;
 
