@@ -3,5 +3,6 @@ collatz
 fact
 fib
 factor
+isprime
 *.o
 *.a

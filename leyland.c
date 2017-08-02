@@ -10,14 +10,14 @@
 
 char* argv0;
 
-TAILQ_HEAD(leyhead, Leyland)head=TAILQ_HEAD_INITIALIZER(head);
-
-typedef struct
+typedef struct Leyland
 {
 	size_t width;
 	z_t val;
 	TAILQ_ENTRY(Leyland)next;
 } Leyland;
+
+TAILQ_HEAD(leyhead, Leyland)head=TAILQ_HEAD_INITIALIZER(head);
 
 static void usage(void)
 {

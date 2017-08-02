@@ -16,10 +16,7 @@ Finished:
 * fact
 * fib
 * leyland
-
-Present:
-
-* factor: like factor(1). To compile it, type `gcc -lpthread -lgmp -o factor factor.c libutil.a`. The gmp dependency will be removed.
+* isprime
 
 Planned:
 
@@ -27,8 +24,9 @@ Planned:
 	primes that add up to the given number. Pairs are separated by " ", lists
 	of pairs are separated by ":"
 * hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
-* isprime [NUMS]: print "prime" and "nonprime" if a number from the arguments/input
 * primes [N[-M]]: print all primes up to N or from N to M
+* factor [NUMS]: print the prime factors of a given number
+* deterministic prime-checking methods: sieve of eratosthenes (with bit-field and list), brute force checking, sieve of atkin
 
 Installation
 ------------

@@ -1,0 +1,36 @@
+.Dd August 02, 2017
+.Dt ISPRIME 1
+.Os
+
+.Sh NAME
+.Nm isprime
+.Nd check primality of the input
+
+.Sh SYNOPSIS
+.Nm
+.Op numbers
+
+.Sh DESCRIPTION
+.Nm
+takes its arguments or its input as numbers and checks whether they are primes.
+It uses the Miller-Rabin test, and has three possible results:
+.Dq non-prime ,
+when a number is definitely not a prime,
+.Dq probably prime ,
+when a number is a prime with a high probability, and
+.Dq prime ,
+when a number is definitely a prime.
+
+.Sh EXIT STATUS
+.Ex -std
+
+.Sh BUGS
+The prime checking is only probabilistic at the moment, a deterministic way
+may be added.
+
+.Sh SEE ALSO
+.Xr factor 1 ,
+.Xr primes 1 .
+
+.Sh AUTHORS
+.An pranomostro Aq Mt pranomostro@posteo.net
