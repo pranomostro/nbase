@@ -27,6 +27,8 @@ Planned:
 * primes [N[-M]]: print all primes up to N or from N to M
 * factor [NUMS]: print the prime factors of a given number
 * deterministic prime-checking methods: sieve of eratosthenes (with bit-field and list), brute force checking, sieve of atkin
+* tree-algorithm and caching for collatz numbers
+* better algorithms for fib and fact (if they exist)
 
 Installation
 ------------
@@ -44,8 +46,7 @@ Thanks
 
 Thanks to [maandree](https://github.com/maandree) for
 [libzahl](http://git.suckless.org/libzahl) that makes it possible to
-write something like this in a suckless manner. He is also the author
-of factor.c and factor.1.
+write something like this in a suckless manner.
 
 License
 =======

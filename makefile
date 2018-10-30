@@ -51,11 +51,17 @@ LIBUTILSRC= \
 	libutil/reallocarray.c \
 	libutil/strtonum.c
 
-LIB=$(LIBZAHL) $(LIBUTIL)
+LIBTOO=libtoo.a
+libTOOSRC= \
+	libtoo/eratosthenes_bitarr.c \
+	libtoo/eratosthenes_list.c
+
+LIB=$(LIBZAHL) $(LIBUTIL) $(LIBTOO)
 
 LIBZAHLOBJ=$(LIBZAHLSRC:.c=.o)
 LIBUTILOBJ=$(LIBUTILSRC:.c=.o)
-OBJ=$(BIN:=.o) $(LIBZAHLOBJ) $(LIBUTILOBJ)
+LIBTOOOBJ=$(LIBTOOSRC:.c=.o)
+OBJ=$(BIN:=.o) $(LIBZAHLOBJ) $(LIBUTILOBJ) $(LIBTOOOBJ)
 
 all: $(BIN)
 
@@ -72,6 +78,9 @@ $(LIBZAHL): $(LIBZAHLOBJ)
 	$(AR) rc $@ $?
 	$(RANLIB) $@
 $(LIBUTIL): $(LIBUTILOBJ)
+	$(AR) rc $@ $?
+	$(RANLIB) $@
+$(LIBTOO): $(LIBTOOOBJ)
 	$(AR) rc $@ $?
 	$(RANLIB) $@
 
