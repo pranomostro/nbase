@@ -10,25 +10,11 @@ For more information on individual utilities, refer to the man-pages.
 Utilities
 ---------
 
-Finished:
-
-* collatz
-* fact
-* fib
-* leyland
-* isprime
-
-Planned:
-
-* goldbach [-a] [NUMS]: accept an even number, prints a of all (if called with -a)
-	primes that add up to the given number. Pairs are separated by " ", lists
-	of pairs are separated by ":"
-* hamming [-l NUM]: print all/the first NUM hamming numbers, sorted ascending
-* primes [N[-M]]: print all primes up to N or from N to M
-* factor [NUMS]: print the prime factors of a given number
-* deterministic prime-checking methods: sieve of eratosthenes (with bit-field and list), brute force checking, sieve of atkin
-* tree-algorithm and caching for collatz numbers
-* better algorithms for fib and fact (if they exist)
+* collatz: print collatz sequences
+* fact: compute factorials
+* fib: compute fibonacci numbers
+* leyland: print the leyland numbers
+* isprime: check primality of the input
 
 Installation
 ------------
