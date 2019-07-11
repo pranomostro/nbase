@@ -7,3 +7,4 @@ factor [NUMS]: print the prime factors of a given number
 deterministic prime-checking methods: sieve of eratosthenes (with bit-field and list), brute force checking, sieve of atkin
 tree-algorithm and caching for collatz numbers
 better algorithms for fib and fact (if they exist)
+add wikipedia links to the README

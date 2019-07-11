@@ -52,7 +52,7 @@ LIBUTILSRC= \
 	libutil/strtonum.c
 
 LIBTOO=libtoo.a
-libTOOSRC= \
+LIBTOOSRC= \
 	libtoo/eratosthenes_bitarr.c \
 	libtoo/eratosthenes_list.c
 
